@@ -67,8 +67,8 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
 
                 // const merchantLink = item.querySelector('div[data-sh-or="price"]')?.parentElement?.parentElement?.href ?? null;
 
-                const idArray = productLink ? productLink.split('?')[0].split('/') : null;
-                const shoppingId = idArray ? idArray[idArray.length - 1] : null;
+                // const idArray = productLink ? productLink.split('?')[0].split('/') : null;
+                // const shoppingId = idArray ? idArray[idArray.length - 1] : null;
 
                 const reviewStr = item.querySelector('div.tDoYpc div').getAttribute('aria-label').replace(/,/g, '.')
                 const numbers = reviewStr.match(/\d+\.?\d*/g)
@@ -112,7 +112,7 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
                     description,
                     // merchantName,
                     // merchantLink,
-                    shoppingId,
+                    // shoppingId,
                     reviewsScore,
                     reviewsCount,
                     positionOnSearchPage: i + 1,
@@ -153,8 +153,8 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
 
                 // const merchantLink = item.querySelector('div[data-sh-or="price"]')?.parentElement?.parentElement?.href ?? null;
 
-                const idArray = productLink ? productLink.split('?')[0].split('/') : null;
-                const shoppingId = idArray ? idArray[idArray.length - 1] : null;
+                // const idArray = productLink ? productLink.split('?')[0].split('/') : null;
+                // const shoppingId = idArray ? idArray[idArray.length - 1] : null;
 
                 const reviewStr = item.querySelector('div.U6puSd div').getAttribute('aria-label')
                 const numbers = reviewStr.match(/\d+\.?\d*/g)
@@ -203,7 +203,7 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
                     description: '',
                     // merchantName,
                     // merchantLink,
-                    shoppingId,
+                    // shoppingId,
                     reviewsScore,
                     reviewsCount,
                     positionOnSearchPage: i + 1,
