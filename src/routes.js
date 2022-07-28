@@ -48,6 +48,8 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
                 const item = results[i];
                 // KEYS OF OUTPUT OBJ
 
+                console.log("Product", i)
+
                 const type = 'result'
 
                 const title = item.querySelector('h3') ? item.querySelector('h3') : null;
@@ -133,6 +135,8 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
                 // Please pay attention that "merchantMetrics" and "reviewsLink" were removed from the  "SEARCH" page.
                 const item = ads[i];
                 // KEYS OF OUTPUT OBJ
+
+                console.log("Ad", i)
 
                 const type = 'ad'
 
