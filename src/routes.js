@@ -126,7 +126,7 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
                     reviewsScore,
                     reviewsCount,
                     positionOnSearchPage: i + 1,
-                    productDetails: item.querySelectorAll('.translate-content')[1]?.textContent.trim(),
+                    // productDetails: item.querySelectorAll('.translate-content')[1]?.textContent.trim(),
                 };
 
                 data.push(output);
@@ -228,7 +228,7 @@ exports.SEARCH_PAGE = async (page, request, query, requestQueue, maxPostCount, e
                         reviewsScore,
                         reviewsCount,
                         positionOnSearchPage: i + 1,
-                        productDetails: item.querySelectorAll('.translate-content')[1]?.textContent.trim(),
+                        // productDetails: item.querySelectorAll('.translate-content')[1]?.textContent.trim(),
                     };
     
                     data.push(output);
