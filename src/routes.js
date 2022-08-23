@@ -114,6 +114,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
 
                 // FINAL OUTPUT OBJ
                 const output = {
+                    countryCode, 
                     query,
                     type,
                     productName,
@@ -216,6 +217,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
     
                     // FINAL OUTPUT OBJ
                     const output = {
+                        countryCode, 
                         query,
                         type,
                         productName,
