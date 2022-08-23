@@ -239,6 +239,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
 
             return data;
         },
+        countryCode,
         maxPostCount,
         query,
         savedItems,
