@@ -30,7 +30,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
     log.info(`Found ${resultsLength} products on the page.`);
     // eslint-disable-next-line no-shadow
     const data = await page.evaluate(
-        (maxPostCount, query, savedItems) => {
+        (countryCode, maxPostCount, query, savedItems) => {
 
             // nodes with items
             let results = Array.from(document.querySelectorAll('.sh-dlr__list-result'));
