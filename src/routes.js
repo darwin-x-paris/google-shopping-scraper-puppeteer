@@ -164,20 +164,15 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
 
                     if (item.querySelector('div.U6puSd div')) {
 
-                        const reviewStr = item.querySelector('div.U6puSd div').getAttribute('aria-label')
+                        const elemReviews = item.querySelector('div.U6puSd div')
+
+                        const reviewStr = elemReviews.querySelector('div.qSSQfd.uqAnbd').getAttribute('aria-label')
                         const numbers = reviewStr.match(/\d+\.?\d*/g)
-                        const n1 = parseFloat(numbers[0])
-                        const n2 = parseFloat(numbers[1])
+                        const reviewsScore = parseFloat(numbers[0])
 
                         // Le nb reviews est le 
-                        const elemText = item.querySelector('div.U6puSd div span').textContent.replace(/\s+/g, '')
-                        if (elemText.indexOf(n1) > -1) {
-                            reviewsScore = n2
-                            reviewsCount = n1
-                        } else {
-                            reviewsScore = n1
-                            reviewsCount = n2
-                        }
+                        const elemTextNbReviews = elemReviews.querySelector('div.U6puSd div span').textContent.replace(/\s+/g, '').replace(/[\(\)]/gi, '')
+                        reviewsCount = parseFloat(elemTextNbReviews)
                     }
 
                     // const reviewsScore = item.querySelector('div[aria-label*="product reviews"] span')?.textContent ?? null;
