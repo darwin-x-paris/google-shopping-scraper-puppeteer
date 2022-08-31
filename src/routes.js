@@ -75,6 +75,16 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                 // const idArray = productLink ? productLink.split('?')[0].split('/') : null;
                 // const shoppingId = idArray ? idArray[idArray.length - 1] : null;
 
+                // div.fAcMNb => badge spécial
+                // span.S7D1Ud => retrait magasin / drive
+                const elementBadgeDrive = item.querySelector('span.S7D1Ud')
+                const badgeDrive = (elementBadgeDrive) ? true : false
+                
+                // span.Ib8pOd => PROMO / Prix en baisse
+                const elementBadgePromo = item.querySelector('span.Ib8pOd')
+                const badgePromo = (elementBadgePromo) ? true : false
+                //      Ib8pOd
+
                 console.log("Item ;", item)
                 console.log("Item div ;", item.querySelector('div.tDoYpc div'))
 
@@ -92,8 +102,11 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     const elementAvg = elementReviews.querySelector('span')
                     if (elementAvg)
                         elementReviews.removeChild(elementAvg)
-                    const scoreReviewStr = elementReviews.textContent.replace(/\s*/, '')
-                    reviewsCount = parseFloat(scoreReviewStr)
+                    const subElemReview = elementReviews.querySelector('div')
+                    if (subElemReview)
+                        elementReviews.removeChild(subElemReview)
+                    const scoreReviewStr = elementReviews.textContent.replace(/\s*/g, '').replace(/,/g, '').replace(/./g, '')
+                    reviewsCount = parseInt(scoreReviewStr)
 
                 }
 
@@ -111,6 +124,8 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     // shoppingId,
                     reviewsScore,
                     reviewsCount,
+                    badgeDrive,
+                    badgePromo,
                     positionOnSearchPage: i + 1,
                     // productDetails: item.querySelectorAll('.translate-content')[1]?.textContent.trim(),
                 };
