@@ -96,17 +96,16 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     // Check if style element :
                     let elementReviews = item.querySelector('div.tDoYpc div')
 
-                    const styleElem = elementReviews.querySelector(':scope > style')
-                    if (styleElem) {
-
-                        elemReviews = elemReviews.querySelector(':scope > div')
-                    }
-
+                    // const styleElem = elementReviews.querySelector(':scope > style')
+                    // if (styleElem) {
+                    //     elemReviews = elemReviews.querySelector(':scope > div')
+                    // }
 
                     const avg = item.querySelector('.Rsc7Yb') ? item.querySelector('.Rsc7Yb').textContent.replace(',', '.') : '0'
                     reviewsScore = parseFloat(avg)
 
                     // Remove elements :
+                    let elemStr = elementReviews.textContent
                     const elementAvg = elementReviews.querySelector('span')
                     if (elementAvg)
                         elementReviews.removeChild(elementAvg)
@@ -133,6 +132,8 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     // shoppingId,
                     reviewsScore,
                     reviewsCount,
+                    elemStr,
+                    scoreReviewStr,
                     badgeDrive,
                     badgePromo,
                     positionOnSearchPage: i + 1,
