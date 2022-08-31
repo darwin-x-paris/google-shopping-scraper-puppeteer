@@ -116,7 +116,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     if (subElemReview)
                         elementReviews.removeChild(subElemReview)
                     scoreReviewStr = elementReviews.textContent
-                    let scoreReviewStrTemp = scoreReviewStr.replace(/\s+/g, '').replace(/,/g, '').replace(/./g, '')
+                    let scoreReviewStrTemp = scoreReviewStr.replace(/\s+/g, '').replace(/,/g, '').replace(/\./g, '')
                     reviewsCount = parseInt(scoreReviewStrTemp)
 
 
