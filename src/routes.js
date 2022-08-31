@@ -93,7 +93,15 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
 
                 if (item.querySelector('div.tDoYpc div')) {
 
-                    const elementReviews = item.querySelector('div.tDoYpc div')
+                    // Check if style element :
+                    let elementReviews = item.querySelector('div.tDoYpc div')
+
+                    const styleElem = item.querySelector('style')
+                    if (styleElem) {
+
+                        elemReviews = elemReviews.querySelector(':scope > div')
+                    }
+
 
                     const avg = item.querySelector('.Rsc7Yb') ? item.querySelector('.Rsc7Yb').textContent.replace(',', '.') : '0'
                     reviewsScore = parseFloat(avg)
@@ -107,6 +115,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                         elementReviews.removeChild(subElemReview)
                     const scoreReviewStr = elementReviews.textContent.replace(/\s*/g, '').replace(/,/g, '').replace(/./g, '')
                     reviewsCount = parseInt(scoreReviewStr)
+
 
                 }
 
