@@ -115,8 +115,9 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     const subElemReview = elementReviews.querySelector(':scope > div.qSSQfd')
                     if (subElemReview)
                         elementReviews.removeChild(subElemReview)
-                    scoreReviewStr = elementReviews.textContent.replace(/\s*/g, '').replace(/,/g, '').replace(/./g, '')
-                    reviewsCount = parseInt(scoreReviewStr)
+                    scoreReviewStr = elementReviews.textContent
+                    let scoreReviewStrTemp = scoreReviewStr.replace(/\s+/g, '').replace(/,/g, '').replace(/./g, '')
+                    reviewsCount = parseInt(scoreReviewStrTemp)
 
 
                 }
