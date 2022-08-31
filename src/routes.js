@@ -91,6 +91,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                 let reviewsScore = 0
                 let reviewsCount = 0
                 let elemStr = ''
+                let elemStrHTML = ''
                 let scoreReviewStr = ''
                 if (item.querySelector('div.tDoYpc div')) {
 
@@ -107,6 +108,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
 
                     // Remove elements :
                     elemStr = elementReviews.textContent
+                    elemStrHTML = elementReviews.innerHTML
                     const elementAvg = elementReviews.querySelector('span')
                     if (elementAvg)
                         elementReviews.removeChild(elementAvg)
@@ -134,6 +136,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     reviewsScore,
                     reviewsCount,
                     elemStr,
+                    elemStrHTML,
                     scoreReviewStr,
                     badgeDrive,
                     badgePromo,
