@@ -90,7 +90,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
 
                 let reviewsScore = 0
                 let reviewsCount = 0
-
+                let elemStr = ''
                 if (item.querySelector('div.tDoYpc div')) {
 
                     // Check if style element :
@@ -105,7 +105,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     reviewsScore = parseFloat(avg)
 
                     // Remove elements :
-                    let elemStr = elementReviews.textContent
+                    elemStr = elementReviews.textContent
                     const elementAvg = elementReviews.querySelector('span')
                     if (elementAvg)
                         elementReviews.removeChild(elementAvg)
