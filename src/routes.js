@@ -91,6 +91,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                 let reviewsScore = 0
                 let reviewsCount = 0
                 let elemStr = ''
+                let scoreReviewStr = ''
                 if (item.querySelector('div.tDoYpc div')) {
 
                     // Check if style element :
@@ -112,7 +113,7 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     const subElemReview = elementReviews.querySelector('div')
                     if (subElemReview)
                         elementReviews.removeChild(subElemReview)
-                    const scoreReviewStr = elementReviews.textContent.replace(/\s*/g, '').replace(/,/g, '').replace(/./g, '')
+                    scoreReviewStr = elementReviews.textContent.replace(/\s*/g, '').replace(/,/g, '').replace(/./g, '')
                     reviewsCount = parseInt(scoreReviewStr)
 
 
