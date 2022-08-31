@@ -109,10 +109,10 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     // Remove elements :
                     elemStr = elementReviews.textContent
                     elemStrHTML = elementReviews.innerHTML
-                    const elementAvg = elementReviews.querySelector('span')
+                    const elementAvg = elementReviews.querySelector(':scope > span.Rsc7Yb')
                     if (elementAvg)
                         elementReviews.removeChild(elementAvg)
-                    const subElemReview = elementReviews.querySelector('div')
+                    const subElemReview = elementReviews.querySelector(':scope > div.qSSQfd')
                     if (subElemReview)
                         elementReviews.removeChild(subElemReview)
                     scoreReviewStr = elementReviews.textContent.replace(/\s*/g, '').replace(/,/g, '').replace(/./g, '')
