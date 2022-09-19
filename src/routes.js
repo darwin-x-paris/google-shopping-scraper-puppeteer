@@ -151,85 +151,89 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
 
             // Ads :
             // nodes with items
-            let adContainer = document.querySelector('.GhTN2e')
-            if (adContainer) {
+            let arrAdContainer = Array.from(document.querySelectorAll('.GhTN2e'))
+            if (arrAdContainer && arrAdContainer.length > 0) {
 
-                let ads = Array.from(adContainer.querySelectorAll('.KZmu8e'));
+                for (let iAdContainer=0; iAdContainer<arrAdContainer.length; iAdContainer++) {
 
-                // ITERATING NODES TO GET ADS
-                for (let i = 0; i < ads.length; i++) {
-                    // Please pay attention that "merchantMetrics" and "reviewsLink" were removed from the  "SEARCH" page.
-                    const item = ads[i];
-                    // KEYS OF OUTPUT OBJ
-
-                    // console.log("Ad", i)
-
-                    const type = 'ad'
-
-                    const title = item.querySelector('.sh-np__product-title') ? item.querySelector('.sh-np__product-title') : null;
-
-                    const productName = title?.textContent ?? null;
-
-                    // const productLinkAnchor = item.querySelector('a[href*="shopping/product/"]')
-                    //     ? item.querySelector('a[href*="shopping/product/"]')
-                    //     : null;
-                    // const productLink = productLinkAnchor ? productLinkAnchor.href : null;
-
-                    // const price = item.querySelector('div[data-sh-or="price"] div > span > span')?.textContent ?? null;
-
-                    // const description = item.querySelectorAll('div.hBUZL')[1]?.textContent ?? null;
-
-                    // const merchantName = item.querySelector('div[data-sh-or="price"]')?.nextSibling?.textContent ?? null;
-
-                    // const merchantLink = item.querySelector('div[data-sh-or="price"]')?.parentElement?.parentElement?.href ?? null;
-
-                    // const idArray = productLink ? productLink.split('?')[0].split('/') : null;
-                    // const shoppingId = idArray ? idArray[idArray.length - 1] : null;
-
-                    let reviewsScore = 0
-                    let reviewsCount = 0
-
-                    console.log("Ad ;", item)
-                    console.log("Ad div ;", item.querySelector('div.U6puSd div'))
-
-                    if (item.querySelector('div.U6puSd div')) {
-
-                        const elemReviews = item.querySelector('div.U6puSd div')
-
-                        const reviewStr = elemReviews.querySelector('div.qSSQfd.uqAnbd').getAttribute('aria-label')
-                        const numbers = reviewStr.match(/\d+\.?\d*/g)
-                        const reviewsScore = parseFloat(numbers[0])
-
-                        // Le nb reviews est le 
-                        const elemTextNbReviews = elemReviews.querySelector('div.U6puSd div span').textContent.replace(/\s+/g, '').replace(/[\(\)]/gi, '')
-                        reviewsCount = parseFloat(elemTextNbReviews)
+                    let ads = Array.from(arrAdContainer[iAdContainer].querySelectorAll('.KZmu8e'));
+    
+                    // ITERATING NODES TO GET ADS
+                    for (let i = 0; i < ads.length; i++) {
+                        // Please pay attention that "merchantMetrics" and "reviewsLink" were removed from the  "SEARCH" page.
+                        const item = ads[i];
+                        // KEYS OF OUTPUT OBJ
+    
+                        // console.log("Ad", i)
+    
+                        const type = 'ad'
+    
+                        const title = item.querySelector('.sh-np__product-title') ? item.querySelector('.sh-np__product-title') : null;
+    
+                        const productName = title?.textContent ?? null;
+    
+                        // const productLinkAnchor = item.querySelector('a[href*="shopping/product/"]')
+                        //     ? item.querySelector('a[href*="shopping/product/"]')
+                        //     : null;
+                        // const productLink = productLinkAnchor ? productLinkAnchor.href : null;
+    
+                        // const price = item.querySelector('div[data-sh-or="price"] div > span > span')?.textContent ?? null;
+    
+                        // const description = item.querySelectorAll('div.hBUZL')[1]?.textContent ?? null;
+    
+                        // const merchantName = item.querySelector('div[data-sh-or="price"]')?.nextSibling?.textContent ?? null;
+    
+                        // const merchantLink = item.querySelector('div[data-sh-or="price"]')?.parentElement?.parentElement?.href ?? null;
+    
+                        // const idArray = productLink ? productLink.split('?')[0].split('/') : null;
+                        // const shoppingId = idArray ? idArray[idArray.length - 1] : null;
+    
+                        let reviewsScore = 0
+                        let reviewsCount = 0
+    
+                        console.log("Ad ;", item)
+                        console.log("Ad div ;", item.querySelector('div.U6puSd div'))
+    
+                        if (item.querySelector('div.U6puSd div')) {
+    
+                            const elemReviews = item.querySelector('div.U6puSd div')
+    
+                            const reviewStr = elemReviews.querySelector('div.qSSQfd.uqAnbd').getAttribute('aria-label')
+                            const numbers = reviewStr.match(/\d+\.?\d*/g)
+                            const reviewsScore = parseFloat(numbers[0])
+    
+                            // Le nb reviews est le 
+                            const elemTextNbReviews = elemReviews.querySelector('div.U6puSd div span').textContent.replace(/\s+/g, '').replace(/[\(\)]/gi, '')
+                            reviewsCount = parseFloat(elemTextNbReviews)
+                        }
+    
+                        // const reviewsScore = item.querySelector('div[aria-label*="product reviews"] span')?.textContent ?? null;
+                        // const reviewsCount = item.querySelector('div[aria-label*="product reviews"]')
+                        //     ? item.querySelector('div[aria-label*="product reviews"]').getAttribute('aria-label').split(' ')[0]
+                        //     : null;
+    
+                        // FINAL OUTPUT OBJ
+                        const output = {
+                            countryCode,
+                            query,
+                            type,
+                            productName,
+                            // productLink,
+                            // price,
+                            description: '',
+                            // merchantName,
+                            // merchantLink,
+                            // shoppingId,
+                            reviewsScore,
+                            reviewsCount,
+                            positionOnSearchPage: iAdContainer+'/'+(i + 1),
+                            // productDetails: item.querySelectorAll('.translate-content')[1]?.textContent.trim(),
+                        };
+    
+                        data.push(output);
                     }
-
-                    // const reviewsScore = item.querySelector('div[aria-label*="product reviews"] span')?.textContent ?? null;
-                    // const reviewsCount = item.querySelector('div[aria-label*="product reviews"]')
-                    //     ? item.querySelector('div[aria-label*="product reviews"]').getAttribute('aria-label').split(' ')[0]
-                    //     : null;
-
-                    // FINAL OUTPUT OBJ
-                    const output = {
-                        countryCode,
-                        query,
-                        type,
-                        productName,
-                        // productLink,
-                        // price,
-                        description: '',
-                        // merchantName,
-                        // merchantLink,
-                        // shoppingId,
-                        reviewsScore,
-                        reviewsCount,
-                        positionOnSearchPage: i + 1,
-                        // productDetails: item.querySelectorAll('.translate-content')[1]?.textContent.trim(),
-                    };
-
-                    data.push(output);
                 }
+
             }
 
             return data;
