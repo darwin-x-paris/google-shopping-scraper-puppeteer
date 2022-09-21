@@ -98,6 +98,10 @@ exports.SEARCH_PAGE = async (countryCode, page, request, query, requestQueue, ma
                     // Check if style element :
                     let elementReviews = item.querySelector('div.tDoYpc div')
 
+                    if (elementReviews.tagName === 'DIV') {
+                        elementReviews = elementReviews.querySelector('span')
+                    }
+
                     // const styleElem = elementReviews.querySelector(':scope > style')
                     // if (styleElem) {
                     //     elemReviews = elemReviews.querySelector(':scope > div')
